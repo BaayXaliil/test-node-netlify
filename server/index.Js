@@ -16,6 +16,17 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+app.use("/", async (req, res) => {
+  try {
+    res.json({
+      status: 200,
+      message: "Get data has successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Server error");
+  }
+});
 app.use("/api/posts", postRoute);
 
 app.listen(process.env.PORT || 5000, () => {
